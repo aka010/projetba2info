@@ -16,7 +16,7 @@ class PlayingState(private val game: Game) : GameState {
         println("Mise à jour de l'état PlayingState")
 
         // Mise à jour des obstacles et du monde
-        game.getGameWorld().update()
+        game.getGameWorld().update(game)
 
         // Appel de la génération automatique
         frameCounter++
@@ -25,8 +25,11 @@ class PlayingState(private val game: Game) : GameState {
         }
 
         // Collision (optionnel)
-        if (game.getGameWorld().checkCollisions()) {
-            game.changeState(GameOverState(game))
+        if (game.getGameWorld().checkCollisions(game.getPlayer())) {
+            game.getPlayer().loseLife()
+            if (game.getPlayer().getLife() == 0) {
+                game.changeState(GameOverState(game))
+            }
         }
     }
 

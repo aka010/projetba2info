@@ -6,6 +6,7 @@ class Player(
 
 // La voie actuelle du joueur
 ) : GameObject() {
+
     init {
         // Positionner le joueur en bas de l'écran dans sa voie initiale
         val laneWidth = GameView.WIDTH / (MAX_LANE + 1)
@@ -55,6 +56,8 @@ class Player(
             }
         }
     }
+
+    fun getLife() : Int = lives
 
     /**
      * Met à jour l'état du joueur.

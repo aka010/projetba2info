@@ -5,7 +5,7 @@ class ObstacleManager {
     private var difficultyLevel: Int = 1
     var obstacleScrollSpeed = 5f
 
-    fun updateObstacles() {
+    fun updateObstacles(game: Game) {
         println("Mise à jour des obstacles")
         val iterator = obstacles.iterator()
         while (iterator.hasNext()) {
@@ -15,6 +15,7 @@ class ObstacleManager {
             // Supprime si en dehors de l'écran
             if (obstacle.getPosition().y > GameView.HEIGHT) {
                 iterator.remove()
+                game.setScore(game.getScore() + 1)
             }
         }
     }

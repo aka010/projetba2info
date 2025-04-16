@@ -8,11 +8,11 @@ class GameWorld {
     private var difficultyLevel: Int = 1 // Niveau de difficulté initial
     var obstacleScrollSpeed = 5f
     //Mise à jour du monde du jeu.*/
-    fun update() {
+    fun update(game: Game) {
         println("Mise à jour du GameWorld")// Mettre à jour les obstacles
         obstacleScrollSpeed += 0.01f
         obstacleManager.obstacleScrollSpeed = obstacleScrollSpeed
-        obstacleManager.updateObstacles()
+        obstacleManager.updateObstacles(game)
 
         // Vérifier si le niveau de difficulté doit augmenter
         increaseDifficulty()
@@ -25,11 +25,13 @@ class GameWorld {
         obstacleManager.generateObstacles(difficultyLevel)}
 
     //Vérifie les collisions entre les objets du jeu (par exemple, joueur et obstacles).*/
-    fun checkCollisions(): Boolean {
+    fun checkCollisions(player: Player): Boolean {
         println("Vérification des collisions")
+
         for (obstacle in obstacleManager.getObstacles()) {
-            if (obstacle.isCollidingWithPlayer()) {
+            if (obstacle.isCollidingWithPlayer(player)) {
                 println("Collision détectée avec un obstacle !")
+
                 return true}}
         return false}
 
