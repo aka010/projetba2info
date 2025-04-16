@@ -10,7 +10,7 @@ class Player(
         // Positionner le joueur en bas de l'écran dans sa voie initiale
         val laneWidth = GameView.WIDTH / (MAX_LANE + 1)
         val x = lane * laneWidth + (laneWidth / 2)
-        val y = GameView.HEIGHT - 200f // Un peu au-dessus du bas de l'écran
+        val y = 8*GameView.HEIGHT/9 // Un peu au-dessus du bas de l'écran
         setPosition(Position(x, y))
     }
 

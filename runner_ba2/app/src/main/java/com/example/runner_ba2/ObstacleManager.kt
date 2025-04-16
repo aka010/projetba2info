@@ -24,38 +24,36 @@ class ObstacleManager {
         // Probabilité de générer un obstacle augmente avec la difficulté
         val chance = 0.1f + (difficultyLevel * 0.05f)
 
-        if (Math.random() < chance) {
-            // Choisir aléatoirement entre obstacle statique et mobile
-            val isMoving = Math.random() < 0.3
+        // Choisir aléatoirement entre obstacle statique et mobile
+        val isMoving = Math.random() < 0.3
 
-            val laneWidth = GameView.WIDTH / 3
-            val randomLane = (0..2).random()
-            val x = randomLane * laneWidth + (laneWidth / 2)
+        val laneWidth = GameView.WIDTH / 3
+        val randomLane = (0..2).random()
+        val x = randomLane * laneWidth + (laneWidth / 2)
 
-            val obstacle = if (isMoving) {
-                MovingObstacle(
-                    x = x,
-                    y = -50f,
-                    width = 50f,
-                    height = 50f,
-                    speed = 5f + difficultyLevel,
-                    damage = 1,
-                    horizontalSpeed = 2f,
-                    amplitude = 30f
-                )
-            } else {
-                StaticObstacle(
-                    x = x,
-                    y = -50f,
-                    width = 50f,
-                    height = 50f,
-                    speed = 5f + difficultyLevel,
-                    damage = 1
-                )
-            }
-
-            obstacles.add(obstacle)
+        val obstacle = if (isMoving) {
+            MovingObstacle(
+                x = x,
+                y = GameView.HEIGHT/9,
+                width = 50f,
+                height = 50f,
+                speed = 5f ,
+                damage = 1,
+                horizontalSpeed = 2f/10,
+                amplitude = 30f
+            )
+        } else {
+            StaticObstacle(
+                x = x,
+                y = GameView.HEIGHT/9,
+                width = 50f,
+                height = 50f,
+                speed = 5f ,
+                damage = 1
+            )
         }
+
+        obstacles.add(obstacle)
     }
 
     fun getObstacles(): List<Obstacle> {

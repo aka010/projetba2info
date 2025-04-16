@@ -37,7 +37,6 @@ class Game {
 
     fun update() {
         currentState.update()
-        gameWorld.update()
     }
 
     fun handleInput(input: Input) {
